@@ -21,16 +21,45 @@ const createElement = (tag, className) => {
   return element;
 }
 
+const createCard = (character) => {
+
+  const card = createElement('div', 'card');
+  const front = createElement('div', 'face front');
+  const back = createElement('div', 'face back');
+
+  front.style.backgroundImage = `url('../images/${character}.jpg')`;
+
+  card.appendChild(front);
+  card.appendChild(back);
+
+  card.addEventListener('click', revealCard);
+  card.setAttribute('data-character', character)
+
+  return card;
+}
+
 let firstCard = '';
 let secondCard = '';
 
-const checkEndGame = () => {
-  const disabledCards = document.querySelectorAll('.disabled-card');
+const revealCard = ({ target }) => {
 
-  if (disabledCards.length === 20) {
-    clearInterval(this.loop);
-    alert(`Parabéns ${spanPlayer.innerHTML}, seu score foi ${timer.innerHTML}!`);
+  if (target.parentNode.className.includes('reveal-card')) {
+    return;
   }
+
+  if (firstCard === '') {
+
+    target.parentNode.classList.add('reveal-card');
+    firstCard = target.parentNode;
+
+  } else if (secondCard === '') {
+
+    target.parentNode.classList.add('reveal-card');
+    secondCard = target.parentNode;
+
+    checkCards();
+
+  }  
 }
 
 const checkCards = () => {
@@ -58,45 +87,15 @@ const checkCards = () => {
 
     }, 500);
   }
-
 }
 
-const revealCard = ({ target }) => {
+const checkEndGame = () => {
+  const disabledCards = document.querySelectorAll('.disabled-card');
 
-  if (target.parentNode.className.includes('reveal-card')) {
-    return;
+  if (disabledCards.length === 20) {
+    clearInterval(this.loop);
+    alert(`Parabéns ${spanPlayer.innerHTML}, seu score foi ${timer.innerHTML}!`);
   }
-
-  if (firstCard === '') {
-
-    target.parentNode.classList.add('reveal-card');
-    firstCard = target.parentNode;
-
-  } else if (secondCard === '') {
-
-    target.parentNode.classList.add('reveal-card');
-    secondCard = target.parentNode;
-
-    checkCards();
-
-  }  
-}
-
-const createCard = (character) => {
-
-  const card = createElement('div', 'card');
-  const front = createElement('div', 'face front');
-  const back = createElement('div', 'face back');
-
-  front.style.backgroundImage = `url('../images/${character}.jpg')`;
-
-  card.appendChild(front);
-  card.appendChild(back);
-
-  card.addEventListener('click', revealCard);
-  card.setAttribute('data-character', character)
-
-  return card;
 }
 
 const loadGame = () => {
