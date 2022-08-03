@@ -29,7 +29,7 @@ const checkEndGame = () => {
 
   if (disabledCards.length === 20) {
     clearInterval(this.loop);
-    alert(`Parabéns ${spanPlayer.innerHTML}, Seu score foi ${timer.innerHTML}!`);
+    alert(`Parabéns ${spanPlayer.innerHTML}, seu score foi ${timer.innerHTML}!`);
   }
 }
 
