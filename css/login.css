@@ -1,4 +1,9 @@
-
+body {
+  background-image: url('../images/bg-marvel.webp');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
 
 .login-form {
   align-items: center;
@@ -17,12 +22,13 @@
 }
 
 .login__header img {
-  width: 100px;
+  width: 200px;
 }
 
 .login__header h1 {
-  color: #333;
-  font-size: 1.5em;
+  color: white;
+  text-shadow: 2px 2px 2px red;
+  font-size: 1.3em;
 }
 
 .login__input {
